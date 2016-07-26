@@ -35,6 +35,10 @@ Pour vérifier qu’il y a des modifications en cours :
 
     > git status
 
+Pour voir le détail des modifications en cours :
+
+    > git diff
+    
 Pour enregistrer les modifications dans git :
 
     > git commit -a -m 'Nouvel essai'
@@ -51,6 +55,14 @@ Pour enregistrer les modifications dans git :
 #### 3.4. Voir le détail d’une modification (différences avant/après)
 
     > git show d2c5aef7b7c9a74ba5575a63fcd971d83bf69915
+
+#### 3.5. Revenir à un état antérieur
+
+    > git checkout d2c5aef7b7c9a74ba5575a63fcd971d83bf69915
+
+#### 3.6. Revenir à l’état le plus récent
+
+    > git checkout master
 
 ### 4. Utiliser java sur son poste
 
