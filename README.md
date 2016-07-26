@@ -26,7 +26,7 @@ Fichiers CSV de référence :
 
 En ligne de commande :
 
-    > git clone git@github.com:avantage-compris/jplc-init-java.git
+    > git clone https://github.com/avantage-compris/jplc-init-java
     > cd jplc-init-java
     
 #### 3.2. Enregistrer les modifications dans git sur son poste
