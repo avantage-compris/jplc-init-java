@@ -16,7 +16,7 @@ public class Table {
 	
 		v[x][y] = s;
 		if (rowCount<=y) rowCount=y+1;
-		if (colCount<=x) rowCount=x+1;
+		if (colCount<=x) colCount=x+1;
 	
 	}
 	
