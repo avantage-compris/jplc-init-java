@@ -7,10 +7,10 @@ public class Table {
 	public int rowCount=0;
 	public int colCount=0;
 	
-	private String[] h = new String [50]; 
-	private String[][] v = new String [50][200]; 
+	private String[] h = new String [500]; 
+	private String[][] v = new String [500][20000]; 
 	
-	private double[][] d = new double [50][200]; 
+	private double[][] d = new double [500][20000]; 
 	
 	public void setCell(int x, int y, String s) {
 	
@@ -51,7 +51,7 @@ public class Table {
 					t0.setCell(i,j, line.substring(index));
 					break;
 				}
-				t0.setCell(i,j,line.substring(index, end-index));
+				t0.setCell(i,j,line.substring(index, end));
 				index=end+1;
 			}
 		}
