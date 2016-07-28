@@ -31,10 +31,10 @@ public class Table {
 			if (i>0) writer.print(',');
 			writer.print(v[i][j]);
 	
-		writer.println();	
-	
 		}	
-	
+
+	writer.println();
+		
 	}
 	
 	writer.flush();
