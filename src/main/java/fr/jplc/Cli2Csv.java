@@ -12,28 +12,33 @@ public class Cli2Csv {
 	
 	fileName = args[0];
 	
+	/*
+	java.io.File f0 = new File(fileName);
+	
+	Table t0 = Table.importCsv(f0);
+	*/
+	
 	java.io.File outputFile = new java.io.File("target/output.csv");
 	
 	/*
 	java.io.PrintWriter writer = new java.io.PrintWriter(new java.io.FileWriter(outputFile));
-	
 	writer.println(new java.util.Date() + ",1");
-
 	writer.println(fileName + ",2");
-	
 	writer.flush();
-	
 	writer.close();
 	*/
 	
 	Table t = new Table();
-	
+
 	t.setCell(0,0,new java.util.Date().toString());
 	t.setCell(1,0,"1");
 	t.setCell(0,1,fileName);
 	t.setCell(1,1,"2");
 	
 	t.export2Csv(outputFile);
+
+	
+
 	
 	} //fin main 
 

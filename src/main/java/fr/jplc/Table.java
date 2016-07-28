@@ -25,22 +25,37 @@ public class Table {
 	PrintWriter writer = new PrintWriter(new FileWriter(f));
 	
 	for (int j=0; j < rowCount; j++) {
-	
 		for (int i=0; i < colCount; i++) {
-	
 			if (i>0) writer.print(',');
 			writer.print(v[i][j]);
-	
 		}	
-
-	writer.println();
-		
+	writer.println();	
+	}
+	writer.flush();
+	writer.close();
 	}
 	
-	writer.flush();
+	public static Table importCsv(File f0) throws IOException {
 	
-	writer.close();
+		Table t0 = new Table();
+		FileReader r = new FileReader(f0);
+		BufferedReader br = new BufferedReader(r);
 	
+		for (int j=0; ;j++) {  
+			String line = br.readLine();
+			if (line == null) break;
+			int index = 0;
+			for (int i=0; ;i++) {
+				int end=line.indexOf(',',index);
+				if (end==-1) {
+					t0.setCell(i,j, line.substring(index));
+					break;
+				}
+				t0.setCell(i,j,line.substring(index, end-index));
+				index=end+1;
+			}
+		}
+	return t0;
 	}
 	
 } //fin classe Table
