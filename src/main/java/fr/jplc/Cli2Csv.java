@@ -98,7 +98,7 @@ public class Cli2Csv {
 			}
 		}
 		for (int i=0; i<t.colCount; i++) {
-			for (int j=0; j<t.rowCount; j++) {
+			for (int j=0; j<t.colCount; j++) {
 				u.setCell(i, j, y[i][j]);
 			}
 		}
