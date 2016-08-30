@@ -77,7 +77,7 @@ public class Cli2Csv {
 	
 	private static Table covm(Table t, double lda0, int stp) {
 	
-		double y[][] = new double [t.colCount][t.rowcount];
+		double y[][] = new double [t.colCount][t.rowCount];
 	
 		double lda=0.0;
 		double temp=0.0;
@@ -94,7 +94,8 @@ public class Cli2Csv {
 				}
 			}
 			lda = 1.0 / (2.0 - lda);
-			if (lda > lda0) {lda = lda0};
+			if (lda > lda0) {lda = lda0;
+			}
 		}
 		for (int i=0; i<t.colCount; i++) {
 			for (int j=0; j<t.rowCount; j++) {
