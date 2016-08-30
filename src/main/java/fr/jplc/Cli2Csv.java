@@ -30,7 +30,7 @@ public class Cli2Csv {
 	
 	t.export2Csv(outputFile);
 	
-	Table t2 = covm(t, 1, 60);
+	Table t2 = covm(t, 1.0, 60);
 	
 	File f2 = new File("target/covm.csv");
 	
@@ -82,23 +82,19 @@ public class Cli2Csv {
 		double lda=0.0;
 		double temp=0.0;
 	
-		Table u = new Table();
+		Table u= new Table();
 		
-		for (int k=stp; k<t.rowCount; k++) {	
-			lda=0.0;
-			for (int i=0; i<t.colCount; i++) {
-				for (int j=0; j<=i; j++) {
-					temp = (t.getDoubleValue(i,k) - t.getDoubleValue(i,k-stp)) * (t.getDoubleValue(j,k) - t.getDoubleValue(j,k-stp)) ;
-					y[i][j] = lda * y[i][j] + (1.0 - lda) * temp ;
-					y[j][i] = y[i][j] ;
-				}
-			}
-			lda = 1.0 / (2.0 - lda);
-			if (lda > lda0) {lda = lda0;
-			}
-		}
 		for (int i=0; i<t.colCount; i++) {
 			for (int j=0; j<t.colCount; j++) {
+				y[i][j]=0.0;
+				lda = 0.0;
+				for (int k=stp; k<t.rowCount; k++) {	
+					temp = (t.getDoubleValue(i,k) - t.getDoubleValue(i,k-stp)) * (t.getDoubleValue(j,k) - t.getDoubleValue(j,k-stp)) ;
+					y[i][j] = lda * y[i][j] + (1.0 - lda) * temp ;
+					lda = 1.0 / (2.0 - lda);
+					if (lda > lda0) {lda = lda0;
+					}
+				}
 				u.setCell(i, j, y[i][j]);
 			}
 		}
