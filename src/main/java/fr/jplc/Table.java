@@ -33,6 +33,25 @@ public class Table {
 		if (colCount<=x) colCount=x+1;
 	}
 	
+	public void setCell(int x, int y, double z) {
+		d[x][y]=z;
+		v[x][y]=null;
+		if (rowCount<=y) rowCount=y+1;
+		if (colCount<=x) colCount=x+1;
+	}
+	
+	public boolean hasDoubleValue(int x, int y) {
+		return (v[x][y]==null);
+	}
+	
+	public boolean hasMissingData(int x, int y) {
+		return (v[x][y]!=null && v[x][y].length()==0);
+	}
+	
+	public double getDoubleValue(int x, int y) {
+		return d[x][y];
+	}
+	
 	public void export2Csv(File f) throws IOException {
 	
 	PrintWriter writer = new PrintWriter(new FileWriter(f));

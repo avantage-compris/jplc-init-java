@@ -18,7 +18,11 @@ public class Cli2Csv {
 	
 	Table t=t0;
 	
+	/*
 	t.setCell(1,0,"Bonjour");
+	*/
+	miDaFill(t);
+	//fillMissingData(t);
 	
 	java.io.File outputFile = new java.io.File("target/output.csv");
 	
@@ -44,4 +48,23 @@ public class Cli2Csv {
 	
 	} //fin main 
 
+	private static void miDaFill(Table t) {
+		for (int i=0; i<colCount; i++) {
+			double firstData;
+			for (int j=0; j<rowCount; j++) {
+				if (t.hasDoubleValue(i, j)) {
+					firstData=t.getDoubleValue(i,j);
+					break;
+				}
+			}
+			for (int j=0; j<rowCount; j++) {
+				if (t.hasMissingData(i, j)) {
+					t.setCell(i,j, firstData);
+				} else if (t.hasDoubleValue(i,j)) {
+					firstData=t.getDoubleValue(i,j);
+				}
+			}
+		}
+	}
+	
 } //fin classe Cli2Csv
