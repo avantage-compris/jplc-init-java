@@ -19,9 +19,9 @@ public class Table {
 		*/
 		Double dbl;
 		try {
-			dbl=Double.valueOF(s);
+			dbl=Double.valueOf(s);
 			} catch(Exception e) {
-			dbl=null
+			dbl=null;
 			}
 		if (dbl!=null) {
 			d[x][y]=dbl.doubleValue();

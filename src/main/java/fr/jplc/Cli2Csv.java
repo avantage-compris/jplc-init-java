@@ -49,15 +49,15 @@ public class Cli2Csv {
 	} //fin main 
 
 	private static void miDaFill(Table t) {
-		for (int i=0; i<colCount; i++) {
-			double firstData;
-			for (int j=0; j<rowCount; j++) {
+		for (int i=0; i<t.colCount; i++) {
+			double firstData=0.0;
+			for (int j=0; j<t.rowCount; j++) {
 				if (t.hasDoubleValue(i, j)) {
 					firstData=t.getDoubleValue(i,j);
 					break;
 				}
 			}
-			for (int j=0; j<rowCount; j++) {
+			for (int j=0; j<t.rowCount; j++) {
 				if (t.hasMissingData(i, j)) {
 					t.setCell(i,j, firstData);
 				} else if (t.hasDoubleValue(i,j)) {
