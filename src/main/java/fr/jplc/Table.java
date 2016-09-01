@@ -94,7 +94,7 @@ public class Table {
 		java.awt.Dimension dim = extractCsvDimension(f0);
 		System.out.println(dim);
 	
-		Table t0 = new Table();
+		Table t0 = new Table(dim.width, dim.height);
 		FileReader r = new FileReader(f0);
 		BufferedReader br = new BufferedReader(r);
 	
