@@ -82,13 +82,15 @@ public class Cli2Csv {
 		double lda=0.0;
 		double temp=0.0;
 	
+		int hl=1; //file headers
+	
 		Table u= new Table();
 		
 		for (int i=0; i<t.colCount; i++) {
 			for (int j=0; j<t.colCount; j++) {
 				y[i][j]=0.0;
 				lda = 0.0;
-				for (int k=stp; k<t.rowCount; k++) {	
+				for (int k=hl+stp; k<t.rowCount; k++) {	
 					temp = (t.getDoubleValue(i,k) - t.getDoubleValue(i,k-stp)) * (t.getDoubleValue(j,k) - t.getDoubleValue(j,k-stp)) ;
 					y[i][j] = lda * y[i][j] + (1.0 - lda) * temp ;
 					lda = 1.0 / (2.0 - lda);
