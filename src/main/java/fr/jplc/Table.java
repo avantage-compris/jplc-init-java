@@ -8,15 +8,24 @@ public class Table {
 	private int rowCountMax;
 	
 	public Table(int c, int r) {
-		colCountMax = c;
-		rowCountMax = r;
-		h = new String [colCountMax];
-		v = new String [colCountMax][rowCountMax];
-		d = new double [colCountMax][rowCountMax];		
+		this (c, r, true);
 	}
 	
 	public Table() {
-		this (300, 20000);		
+		this (true);		
+	}
+	
+	public Table(boolean hasHeaders) {
+		this (500, 30000, hasHeaders);		
+	}
+	
+	public Table(int c, int r, boolean hasHeaders) {
+		colCountMax = c;
+		rowCountMax = r;
+		if (hasHeaders) {h = new String [colCountMax];} 
+			else {h=null;}
+		v = new String [colCountMax][rowCountMax];
+		d = new double [colCountMax][rowCountMax];			
 	}
 	
 	public int rowCount=0;
@@ -70,6 +79,14 @@ public class Table {
 	
 	PrintWriter writer = new PrintWriter(new FileWriter(f));
 	
+	if (h!=null) {
+		for (int i=0; i < colCount; i++) {
+			if (i>0) writer.print(',');
+			writer.print(h[i]);
+		}
+		writer.println();
+	}
+	
 	for (int j=0; j < rowCount; j++) {
 		for (int i=0; i < colCount; i++) {
 			if (i>0) writer.print(',');
@@ -98,6 +115,8 @@ public class Table {
 		FileReader r = new FileReader(f0);
 		BufferedReader br = new BufferedReader(r);
 	
+		boolean start= (t0.h !=null);
+	
 		for (int j=0; ;j++) {  
 			String line = br.readLine();
 			if (line == null) break;
@@ -105,12 +124,21 @@ public class Table {
 			for (int i=0; ;i++) {
 				int end=line.indexOf(',',index);
 				if (end==-1) {
+					if (start) {
+					t0.h[i]=line.substring(index);	
+					} else {	
 					t0.setCell(i,j, line.substring(index));
+					}
 					break;
 				}
-				t0.setCell(i,j,line.substring(index, end));
+				if (start) {
+					t0.h[i]=line.substring(index, end);	
+					} else {
+					t0.setCell(i,j,line.substring(index, end));
+					}
 				index=end+1;
 			}
+			if (start) {start=false; j--;}
 		}
 	return t0;
 	}
