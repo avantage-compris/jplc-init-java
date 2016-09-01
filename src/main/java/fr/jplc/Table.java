@@ -90,6 +90,10 @@ public class Table {
 	
 	public static Table importCsv(File f0) throws IOException {
 	
+	
+		java.awt.Dimension dim = extractCsvDimension(f0);
+		System.out.println(dim);
+	
 		Table t0 = new Table();
 		FileReader r = new FileReader(f0);
 		BufferedReader br = new BufferedReader(r);
@@ -109,6 +113,31 @@ public class Table {
 			}
 		}
 	return t0;
+	}
+	
+	public static java.awt.Dimension extractCsvDimension(File f) throws IOException {
+	
+		int col =0;
+		int row =0;
+		
+		FileReader r = new FileReader(f);
+		BufferedReader br = new BufferedReader(r);
+	
+		for (int j=0; ;j++) {  
+			String line = br.readLine();
+			if (line == null) break;
+			row++;
+			int index=0;
+			int x=0;
+			for (int i=0; ;i++) {
+				int end=line.indexOf(',',index);
+				if (end==-1) {x++; break;}
+				x++;
+				index = end +1;
+			}
+			if (x>col) col=x;
+		}
+		return new java.awt.Dimension(col, row);	
 	}
 	
 } //fin classe Table
