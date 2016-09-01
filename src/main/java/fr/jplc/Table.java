@@ -7,20 +7,16 @@ public class Table {
 	private int colCountMax;
 	private int rowCountMax;
 	
-	public Table() {
-		colCountMax = 500;
-		rowCountMax = 20000;
-		h = new String [colCountMax];
-		v = new String [colCountMax][rowCountMax];
-		d = new double [colCountMax][rowCountMax];		
-	}
-
 	public Table(int c, int r) {
 		colCountMax = c;
 		rowCountMax = r;
 		h = new String [colCountMax];
 		v = new String [colCountMax][rowCountMax];
 		d = new double [colCountMax][rowCountMax];		
+	}
+	
+	public Table() {
+		this (300, 20000);		
 	}
 	
 	public int rowCount=0;
