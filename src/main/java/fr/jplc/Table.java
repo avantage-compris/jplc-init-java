@@ -4,13 +4,31 @@ import java.io.*;
 
 public class Table {
 
+	private int colCountMax;
+	private int rowCountMax;
+	
+	public Table() {
+		colCountMax = 500;
+		rowCountMax = 20000;
+		h = new String [colCountMax];
+		v = new String [colCountMax][rowCountMax];
+		d = new double [colCountMax][rowCountMax];		
+	}
+
+	public Table(int c, int r) {
+		colCountMax = c;
+		rowCountMax = r;
+		h = new String [colCountMax];
+		v = new String [colCountMax][rowCountMax];
+		d = new double [colCountMax][rowCountMax];		
+	}
+	
 	public int rowCount=0;
 	public int colCount=0;
 	
-	private String[] h = new String [500]; 
-	private String[][] v = new String [500][20000]; 
-	
-	private double[][] d = new double [500][20000]; 
+	private String[] h;
+	private String[][] v; 
+	private double[][] d;
 	
 	public void setCell(int x, int y, String s) {
 	
