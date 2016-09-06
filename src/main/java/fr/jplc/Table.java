@@ -28,6 +28,16 @@ public class Table {
 		d = new double [colCountMax][rowCountMax];			
 	}
 	
+	public Table(String[] h0) {
+		this (h0 != null);
+		if (h0!=null) {
+			colCount = h0.length; 
+			for (int i=0; i<colCount; i++) {
+				h[i]=h0[i];
+			}
+		}
+	}
+	
 	public int rowCount=0;
 	public int colCount=0;
 	
@@ -73,6 +83,25 @@ public class Table {
 	
 	public double getDoubleValue(int x, int y) {
 		return d[x][y];
+	}
+	
+	public String[] getHeaders() {
+		return h;
+	}
+	
+	public Table removeCol(int x) {
+		Table t2= new Table(colCountMax-1, rowCountMax, h!=null);
+		if (h!=null) {
+			for (int i=0; i<x; i++) {t2.h[i] = this.h[i];}
+			for (int i=x+1; i<this.colCount; i++) {t2.h[i-1] = h[i];}
+		}
+		for (int j=0; j<rowCount; j++) {
+			for (int i=0; i<x; i++) {t2.v[i][j] = v[i][j]; t2.d[i][j] = d[i][j];}
+			for (int i=x+1; i<colCount; i++) {t2.v[i-1][j] = v[i][j]; t2.d[i-1][j] = d[i][j];}
+		}
+		t2.colCount = colCount -1;
+		t2.rowCount = rowCount;
+		return t2;
 	}
 	
 	public void export2Csv(File f) throws IOException {

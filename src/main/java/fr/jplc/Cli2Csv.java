@@ -30,7 +30,8 @@ public class Cli2Csv {
 	
 	t.export2Csv(outputFile);
 	
-	Table t2 = covm(t, 1.0, 60);
+	//Table t2 = covm(t, 1.0, 60);
+	Table t2 = covm(t.removeCol(0), 1.0, 60);
 	
 	File f2 = new File("target/covm.csv");
 	
@@ -82,9 +83,10 @@ public class Cli2Csv {
 		double lda=0.0;
 		double temp=0.0;
 	
-		int hl=1; //file headers
+		int hl=0; //file headers
 	
-		Table u= new Table();
+		//Table u= new Table();
+		Table u = new Table(t.getHeaders());
 		
 		for (int i=0; i<t.colCount; i++) {
 			for (int j=0; j<t.colCount; j++) {
